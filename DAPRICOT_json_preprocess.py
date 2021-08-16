@@ -24,10 +24,11 @@ def ava_dapricot_canonical_preprocessing(batch):
     # following line corrects for this
     batch_rotated_rgb = np.transpose(batch, (0, 1, 3, 2, 4))[:, :, :, ::-1, :]
 
+    # Ava resize images
     new_batch_rotated_rgb = []
     for img in batch_rotated_rgb[0]:
         h, w, c = img.shape
-        resize_img = cv2.resize(img, (w//2, h//2))
+        resize_img = cv2.resize(img, (w//3, h//3))
         new_batch_rotated_rgb.append(resize_img)
     new_batch_rotated_rgb = np.stack(new_batch_rotated_rgb)
     new_batch_rotated_rgb = np.expand_dims(new_batch_rotated_rgb, axis=0)
@@ -47,7 +48,8 @@ def ava_dapricot_label_preprocessing(x, y):
     # each example contains images from N cameras, i.e. N=3
     num_imgs_per_ex = np.array(y_object["id"].flat_values).size
     y_patch_metadata["gs_coords"] = np.array(
-        y_patch_metadata["gs_coords"].flat_values/2
+        # Ava resize images
+        y_patch_metadata["gs_coords"].flat_values/3
     ).reshape((num_imgs_per_ex, -1, 2))
     y_patch_metadata["shape"] = y_patch_metadata["shape"].reshape((num_imgs_per_ex,))
     y_patch_metadata["cc_scene"] = y_patch_metadata["cc_scene"][0]
@@ -56,8 +58,9 @@ def ava_dapricot_label_preprocessing(x, y):
         y_object_img = {}
         for k, v in y_object.items():
             y_object_img[k] = np.array(y_object[k].flat_values[i])
+            # Ava resize images
             if k == "area":
-                y_object_img[k] = np.array(y_object[k].flat_values[i]/4)
+                y_object_img[k] = np.array(y_object[k].flat_values[i]/9)
         y_object_list.append(y_object_img)
 
         y_patch_metadata_img = {
