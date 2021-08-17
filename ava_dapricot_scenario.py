@@ -25,8 +25,8 @@ from armory.utils.export import SampleExporter
 
 logger = logging.getLogger(__name__)
 
-# with open("/home/yxiao/code/psp_detection/scenario_configs/dapricot_frcnn_masked_pgd.json") as f:
-# with open("/lab/tmpig23/u/yao_code/psp/scenario_configs/dapricot_frcnn_masked_pgd.json") as f:
+# with open("/home/yxiao/code/psp_detection/scenario_configs/dapricot_frcnn_masked_pgd_pytorch.json") as f:
+# with open("/lab/tmpig23/u/yao_code/psp/scenario_configs/dapricot_frcnn_masked_pgd_pytorch.json") as f:
 # 	config = json.load(f)
 
 
@@ -203,6 +203,8 @@ class ObjectDetectionTask(Scenario):
 				y_target = label_targeter.generate(y_object)
 				generate_kwargs["y_object"] = y_target
 
+				print("+"*40)
+				print(x.shape)
 				x_adv = attack.generate(x=x, **generate_kwargs)
 
 			# Ensure that input sample isn't overwritten by estimator
