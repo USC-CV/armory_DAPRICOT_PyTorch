@@ -30,8 +30,6 @@ def ava_dapricot_canonical_preprocessing(batch):
         h, w, c = img.shape
         resize_img = cv2.resize(img, (w//3, h//3))
         new_batch_rotated_rgb.append(resize_img)
-        break
-    print(h, w, c, "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
     new_batch_rotated_rgb = np.stack(new_batch_rotated_rgb)
     new_batch_rotated_rgb = np.expand_dims(new_batch_rotated_rgb, axis=0)
 
@@ -69,6 +67,5 @@ def ava_dapricot_label_preprocessing(x, y):
             k: np.array(y_patch_metadata[k][i]) for k, v in y_patch_metadata.items()
         }
         y_patch_metadata_list.append(y_patch_metadata_img)
-        break
 
     return (y_object_list, y_patch_metadata_list)
