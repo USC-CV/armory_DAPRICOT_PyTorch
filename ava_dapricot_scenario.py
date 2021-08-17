@@ -10,8 +10,8 @@ from tqdm import tqdm
 from ava_coco_frcnn import *
 import numpy as np
 
-# from armory.utils.config_loading import (
-from ava_config_loading import (
+from armory.utils.config_loading import (
+# from ava_config_loading import (
 	load_dataset,
 	load_model,
 	load_attack,
@@ -27,6 +27,9 @@ logger = logging.getLogger(__name__)
 
 
 # Ava normalize the box predictions
+# the boxes of PyTorch in [x1, y1, x2, y2] format, with 0 <= x1 < x2 <= W and 0 <= y1 < y2 <= H.
+# the boxes of TensorFlow in [y1, x1, y2, x2] format, with 0 <= x1 < x2 <= W and 0 <= y1 < y2 <= H.
+# We need change the format of prediction from PyTorch to TensorFlow
 def normalize_box(predict, SIZE):
 	v = predict['boxes'].copy()
 	if not all(j <= 1.0 for j in v[np.where(v > 0)]):
