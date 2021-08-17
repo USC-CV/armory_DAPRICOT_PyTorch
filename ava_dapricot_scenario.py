@@ -25,10 +25,6 @@ from armory.utils.export import SampleExporter
 
 logger = logging.getLogger(__name__)
 
-# with open("/home/yxiao/code/psp_detection/scenario_configs/dapricot_frcnn_masked_pgd_pytorch.json") as f:
-# with open("/lab/tmpig23/u/yao_code/psp/scenario_configs/dapricot_frcnn_masked_pgd_pytorch.json") as f:
-# 	config = json.load(f)
-
 
 # Ava normalize the box predictions
 def normalize_box(predict, SIZE):
@@ -228,6 +224,13 @@ class ObjectDetectionTask(Scenario):
 		return metrics_logger.results()
 
 
+if __name__ == "__main__":
+	try:
+		with open("/home/yxiao/code/psp_detection/scenario_configs/dapricot_frcnn_masked_pgd_pytorch.json") as f:
+			config = json.load(f)
+	except:
+		with open("/lab/tmpig23/u/yao_code/psp/scenario_configs/dapricot_frcnn_masked_pgd_pytorch.json") as f:
+			config = json.load(f)
 
-# tmp = ObjectDetectionTask()
-# tmp._evaluate(config, num_eval_batches=1, skip_benign=True, skip_attack=None, skip_misclassified=None)
+	tmp = ObjectDetectionTask()
+	tmp._evaluate(config, num_eval_batches=1, skip_benign=True, skip_attack=None, skip_misclassified=None)
