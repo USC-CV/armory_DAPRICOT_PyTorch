@@ -202,7 +202,9 @@ class ObjectDetectionTask(Scenario):
 				generate_kwargs["y_patch_metadata"] = y_patch_metadata
 				y_target = label_targeter.generate(y_object)
 				generate_kwargs["y_object"] = y_target
-
+				
+				print("="*20)
+				print(x.shape)
 				x_adv = attack.generate(x=x, **generate_kwargs)
 
 			# Ensure that input sample isn't overwritten by estimator
