@@ -3,10 +3,8 @@ Pytorch Faster-RCNN for coco object detection
 """
 import logging
 from typing import Optional
-
 import torch
 import torchvision
-from torchvision.models.detection.faster_rcnn import FastRCNNPredictor
 from art.estimators.object_detection import PyTorchFasterRCNN
 
 
