@@ -20,7 +20,7 @@ from ava_config_loading import (
 	load_label_targeter,
 )
 from armory.utils import metrics
-# from armory.scenarios.base import Scenario
+from armory.scenarios.base import Scenario
 from armory.utils.export import SampleExporter
 
 logger = logging.getLogger(__name__)
@@ -43,7 +43,7 @@ def normalize_box(predict, SIZE):
 		return predict
 
 
-class ObjectDetectionTask():
+class ObjectDetectionTask(Scenario):
 	def _evaluate(
 			self,
 			config: dict,
