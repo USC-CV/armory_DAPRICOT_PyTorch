@@ -26,8 +26,8 @@ from armory.utils.export import SampleExporter
 logger = logging.getLogger(__name__)
 
 # with open("/home/yxiao/code/psp_detection/scenario_configs/dapricot_frcnn_masked_pgd.json") as f:
-with open("/lab/tmpig23/u/yao_code/psp/scenario_configs/dapricot_frcnn_masked_pgd.json") as f:
-	config = json.load(f)
+# with open("/lab/tmpig23/u/yao_code/psp/scenario_configs/dapricot_frcnn_masked_pgd.json") as f:
+# 	config = json.load(f)
 
 
 # Ava normalize the box predictions
