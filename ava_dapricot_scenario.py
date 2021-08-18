@@ -39,7 +39,7 @@ def normalize_box(predict, SIZE):
 		normalize_v[:, 2] = v[:, 3] / SIZE[1]
 		normalize_v[:, 3] = v[:, 2] / SIZE[0]
 		predict['boxes'] = normalize_v
-		return predict
+	return predict
 
 
 class ObjectDetectionTask(Scenario):
